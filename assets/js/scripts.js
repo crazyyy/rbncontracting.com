@@ -884,3 +884,10 @@ if (typeof jQuery === 'undefined') {
     window.Typekit.load()
   } catch (a) {};
 }(this, document));
+
+$(function() {
+  var width = $(window).width();
+  var height = $(window).height();
+  $('.Parallax-item').width(width)
+  $('.Parallax-item').height(height)
+});
