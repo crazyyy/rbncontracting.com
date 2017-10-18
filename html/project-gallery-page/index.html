@@ -9,6 +9,9 @@
   <title>Project Gallery Page — RBN Contracting</title>
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700normal,700italic" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
   <script type="text/javascript">
   SQUARESPACE_ROLLUPS = {};
   </script>
@@ -626,15 +629,16 @@
                     <div class="form-wrapper hidden">
                       <div class="form-title">Get a Quote</div>
                       <div class="form-inner-wrapper">
-                        <form autocomplete="on" action="https://raul-nobrega-kzcl.squarespace.com/" method="POST" onsubmit="
-      return (function(form) {
-        Y.use('squarespace-form-submit', 'node', function(Y){
-          (new Y.Squarespace.FormSubmit({
-            formNode: Y.Node(form)
-          })).submit('5709224140261d28460544e8', '', 'footerBlocksMiddle');
-        });
-        return false;
-      })(this)" data-form-id="5709224140261d28460544e8">
+                          <form method="POST" onsubmit="
+                          return (function(form) {
+                            $(form).addClass('current-from');
+                            var formData = {}
+                            formData.fname = $('.current-from').find('input[name=fname]').val();
+                            formData.lname = $('.current-from').find('input[name=lname]').val();
+                            formData.email = $('.current-from').find('input[name=email]').val();
+                            formData.phone = $('.current-from').find('input[name=phone]').val();
+                            formData.textarea = $('.current-from').find('textarea').val();
+                            $.ajax({ url: '/sendmail.php', type: 'POST', data: formData, success: function(data) { $('.current-from .hidden').removeClass('hidden'); $('.current-from').removeClass('current-from'); } }); Y.use('squarespace-form-submit'); return false; })(this)">
                           <div class="field-list clear">
                             <fieldset id="name-yui_3_17_2_1_1458326089009_43446" class="form-item fields name required">
                               <div class="title">Name <span class="required">*</span></div>
@@ -654,7 +658,7 @@
                             </div>
                             <div id="text-yui_3_17_2_1_1458326089009_44213" class="form-item field text required">
                               <label class="title" for="text-yui_3_17_2_1_1458326089009_44213-field">Phone <span class="required">*</span></label>
-                              <input class="field-element text" type="text" id="text-yui_3_17_2_1_1458326089009_44213-field" />
+                              <input class="field-element text" type="text" name="phones" id="text-yui_3_17_2_1_1458326089009_44213-field" />
                             </div>
                             <div id="textarea-yui_3_17_2_1_1458326089009_44641" class="form-item field textarea required">
                               <label class="title" for="textarea-yui_3_17_2_1_1458326089009_44641-field">Project Description <span class="required">*</span></label>

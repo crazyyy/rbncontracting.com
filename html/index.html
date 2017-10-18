@@ -9,6 +9,8 @@
   <title>RBN Contracting</title>
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700normal,700italic" />
   <script type="text/javascript">
   SQUARESPACE_ROLLUPS = {};
@@ -428,7 +430,7 @@
       <div class="Header-inner Header-inner--top" data-nc-group="top">
         <div data-nc-container="top-left">
           <div class="Header-search" data-nc-element="search">
-            <form class="Header-search-form" action="http://www.rbncontracting.com/search" method="get">
+            <form class="Header-search-form" action="#" method="get">
               <input class="Header-search-form-input" name="q" type="text" spellcheck="false" value="" autocomplete="off" placeholder="Search" />
               <button class="Header-search-form-submit" type="submit" data-test="template-search">
                 <svg class="Icon Icon--search--small" viewBox="0 0 15 15">
@@ -458,13 +460,7 @@
             </nav>
           </div>
           <div data-nc-container="bottom-center">
-            <a href="index.html" class="Header-branding" data-nc-element="branding" data-content-field="site-title">
-
-
-                    RBN Contracting
-
-
-              </a>
+            <a href="index.html" class="Header-branding" data-nc-element="branding" data-content-field="site-title">RBN Contracting</a>
           </div>
           <div data-nc-container="bottom-right">
             <nav class="Header-nav Header-nav--secondary" data-nc-element="secondary-nav" data-content-field="navigation">
@@ -540,18 +536,28 @@
                             <div class="form-wrapper hidden">
                               <div class="form-title">Get a Quote</div>
                               <div class="form-inner-wrapper">
-                                <form autocomplete="on" action="https://raul-nobrega-kzcl.squarespace.com/" method="POST" data-form-id="570940257c65e49ce60db91c">
+                                <!-- modal form -->
+                                <form method="POST" onsubmit="
+                          return (function(form) {
+                            $(form).addClass('current-from');
+                            var formData = {}
+                            formData.fname = $('.current-from').find('input[name=fname]').val();
+                            formData.lname = $('.current-from').find('input[name=lname]').val();
+                            formData.email = $('.current-from').find('input[name=email]').val();
+                            formData.phone = $('.current-from').find('input[name=phone]').val();
+                            formData.textarea = $('.current-from').find('textarea').val();
+                            $.ajax({ url: '/sendmail.php', type: 'POST', data: formData, success: function(data) { $('.current-from .hidden').removeClass('hidden'); $('.current-from').removeClass('current-from'); } }); Y.use('squarespace-form-submit'); return false; })(this)">
                                   <div class="field-list clear">
                                     <fieldset id="name-yui_3_17_2_1_1458312228278_440114" class="form-item fields name required">
                                       <div class="title">Name <span class="required">*</span></div>
                                       <legend>Name</legend>
                                       <div class="field first-name">
                                         <label class="caption">
-                                          <input class="field-element field-control" name="fname" x-autocompletetype="given-name" type="text" spellcheck="false" maxlength="30" data-title="First" /> First Name</label>
+                                          <input class="field-element field-control" name="fname" type="text" maxlength="30" data-title="First" /> First Name</label>
                                       </div>
                                       <div class="field last-name">
                                         <label class="caption">
-                                          <input class="field-element field-control" name="lname" x-autocompletetype="surname" type="text" spellcheck="false" maxlength="30" data-title="Last" /> Last Name</label>
+                                          <input class="field-element field-control" name="lname" type="text" maxlength="30" data-title="Last" /> Last Name</label>
                                       </div>
                                     </fieldset>
                                     <div id="email-yui_3_17_2_1_1458312228278_440453" class="form-item field email required">
@@ -560,7 +566,7 @@
                                     </div>
                                     <div id="text-yui_3_17_2_1_1458312228278_440881" class="form-item field text required">
                                       <label class="title" for="text-yui_3_17_2_1_1458312228278_440881-field">Phone <span class="required">*</span></label>
-                                      <input class="field-element text" type="text" id="text-yui_3_17_2_1_1458312228278_440881-field" />
+                                      <input class="field-element text" type="text" name="phone" id="text-yui_3_17_2_1_1458312228278_440881-field" />
                                     </div>
                                     <div id="textarea-yui_3_17_2_1_1458312228278_441309" class="form-item field textarea required">
                                       <label class="title" for="textarea-yui_3_17_2_1_1458312228278_441309-field">Project Description <span class="required">*</span></label>
@@ -571,7 +577,7 @@
                                     <input class="button sqs-system-button sqs-editable-button" type="submit" value="Submit" />
                                   </div>
                                   <div class="hidden form-submission-text">Thank you!</div>
-                                  <div class="hidden form-submission-html" data-submission-html=""></div>
+                                  <div class="hidden form-submission-html"></div>
                                 </form>
                               </div>
                             </div>
@@ -741,16 +747,22 @@
                 <div class="sqs-block form-block sqs-block-form" data-block-type="9" id="block-ea864fcf22a4119e5a29">
                   <div class="sqs-block-content">
                     <div class="lightbox-handle-wrapper lightbox-handle-wrapper--align-center">
-                      <span class="lightbox-handle sqs-system-button sqs-editable-button">
-
-        Request
-
-    </span>
+                      <span class="lightbox-handle sqs-system-button sqs-editable-button">Request</span>
                     </div>
                     <div class="form-wrapper hidden">
                       <div class="form-title">Get a Quote</div>
                       <div class="form-inner-wrapper">
-                        <form autocomplete="on" action="https://raul-nobrega-kzcl.squarespace.com/" method="POST" data-form-id="5709224140261d28460544e8">
+                        <!-- modal form 2 -->
+                        <form method="POST" onsubmit="
+                          return (function(form) {
+                            $(form).addClass('current-from');
+                            var formData = {}
+                            formData.fname = $('.current-from').find('input[name=fname]').val();
+                            formData.lname = $('.current-from').find('input[name=lname]').val();
+                            formData.email = $('.current-from').find('input[name=email]').val();
+                            formData.phone = $('.current-from').find('input[name=phone]').val();
+                            formData.textarea = $('.current-from').find('textarea').val();
+                            $.ajax({ url: '/sendmail.php', type: 'POST', data: formData, success: function(data) { $('.current-from .hidden').removeClass('hidden'); $('.current-from').removeClass('current-from'); } }); Y.use('squarespace-form-submit'); return false; })(this)">
                           <div class="field-list clear">
                             <fieldset id="name-yui_3_17_2_1_1458326089009_43446" class="form-item fields name required">
                               <div class="title">Name <span class="required">*</span></div>
@@ -770,7 +782,7 @@
                             </div>
                             <div id="text-yui_3_17_2_1_1458326089009_44213" class="form-item field text required">
                               <label class="title" for="text-yui_3_17_2_1_1458326089009_44213-field">Phone <span class="required">*</span></label>
-                              <input class="field-element text" type="text" id="text-yui_3_17_2_1_1458326089009_44213-field" />
+                              <input class="field-element text" type="text" name="phone" id="text-yui_3_17_2_1_1458326089009_44213-field" />
                             </div>
                             <div id="textarea-yui_3_17_2_1_1458326089009_44641" class="form-item field textarea required">
                               <label class="title" for="textarea-yui_3_17_2_1_1458326089009_44641-field">Project Description <span class="required">*</span></label>
@@ -811,6 +823,7 @@
       </div>
     </footer>
   </div>
+
   <script src="/js/site-bundle.js" type="text/javascript"></script>
   <script type="text/javascript" data-sqs-type="imageloader-bootstraper">
   (function() {
@@ -822,5 +835,9 @@
   <script>
   Squarespace.afterBodyLoad(Y);
   </script>
+
+
+
+
 </body>
 </html>
