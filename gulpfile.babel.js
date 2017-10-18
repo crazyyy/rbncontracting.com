@@ -19,7 +19,7 @@ const plugins = require("gulp-load-plugins")({
 });
 
 if (htmlOWp === false) {
-  config.path.base.wp = './wordpress/wp-content/themes/' + config.theme + '/';
+  config.path.base.wp = './html/';
   ChangeBasePath(config);
   config.path.base.dest = config.path.base.wp;
 }
